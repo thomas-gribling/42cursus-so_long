@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:42:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/15 15:57:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:42:37 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ t_sprite	create_sprite(void *mlx_ptr, char *path, int width, int height)
 	s.height = height;
 	s.ptr = mlx_xpm_file_to_image(mlx_ptr, path, &s.width, &s.height);
 	if (!s.ptr)
-		printf("Failed to create \"%s\"!\n", s.path);
+		printf("Fail: \"%s\"!\n", s.path);
 	else
-		printf("Successfully created \"%s\" at %p!\n", s.path, s.ptr);
+		printf("Loaded: \"%s\" (%p)\n", s.path, s.ptr);
 	return (s);
 }
 
@@ -59,7 +59,7 @@ int	main(void)
 	map.content[0] = "1111111111";
 	map.content[1] = "10C010C1C1";
 	map.content[2] = "1010101101";
-	map.content[3] = "1E100C0001";
+	map.content[3] = "1E100C0P01";
 	map.content[4] = "1111111111";
 	map.content[5] = NULL;
 	

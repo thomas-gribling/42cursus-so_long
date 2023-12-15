@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:07:22 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/15 15:54:14 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/15 18:53:36 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	place_tile(t_game *game, char c, int x, int y)
 
 	x *= TILE_SIZE;
 	y *= TILE_SIZE;
-	if (c == '0')
+	if (c == '0' || c == 'P')
 		t = game->textures[0];
 	else if (c == '1')
 		t = game->textures[1];
