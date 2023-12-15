@@ -9,11 +9,12 @@ CC = gcc
 CFLAGS = 
 MLXFLAGS = -lX11 -lXext
 
-FILES = main.c
+FILES = main.c map.c
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@echo Creating $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
@@ -21,12 +22,16 @@ mlx:
 	make -sC $(MLX_PATH)
 	
 $(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -I$(MLX_PATH) -I$(INCLUDE)
+	@echo Compiling $@...
+	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -I$(MLX_PATH) -I$(INCLUDE)
+	@echo Done!
 
 clean:
-	rm -rf $(OBJECTS)
+	@echo Removing objects
+	@rm -rf $(OBJECTS)
 
 fclean: clean
-	rm -rf $(NAME)
+	@echo Removing $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
