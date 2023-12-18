@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:42:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/18 16:15:10 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:28:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_sprite	create_sprite(void *mlx_ptr, char *path, int width, int height)
 int	main(int ac, char **av)
 {
 	t_game		g;
-	int			i;
 
 	if (ac != 2)
 		return(write(2, "Error\n", 6), 1);
