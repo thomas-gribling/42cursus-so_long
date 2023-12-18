@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/18 11:26:24 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/18 16:19:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,20 @@
 # define KEY_S 115
 # define KEY_D 100
 
-# define MOVE_UP 0
-# define MOVE_RIGHT 1
-# define MOVE_DOWN 2
-# define MOVE_LEFT 3
+# define TEXTURE_AMT 13
+# define TEX_GROUND 0
+# define TEX_WALL 1
+# define TEX_COLLECT 2
+# define TEX_EXIT 3
+# define TEX_PLAYER 4
+# define TEX_BOUND_0 5
+# define TEX_BOUND_1 6
+# define TEX_BOUND_2 7
+# define TEX_BOUND_3 8
+# define TEX_BOUND_4 9
+# define TEX_BOUND_5 10
+# define TEX_BOUND_6 11
+# define TEX_BOUND_7 12
 
 typedef struct s_map
 {
@@ -59,11 +69,11 @@ typedef struct s_game
 
 int		read_map(t_map *map, char *path);
 int		check_bounds(t_map *map);
-int		load_map(t_map *map, char *path);
+int		load_map(t_game *game, char *path);
 void	generate_map(t_game *game);
 
 void	player_move(t_game *game, int dir);
-int		refresh_player(t_game *game);
+void	init_move(t_game *game);
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);

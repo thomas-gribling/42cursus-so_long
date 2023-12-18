@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:17:11 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/18 10:46:35 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:58:27 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	get_map_height(t_map *map, char *path)
 	int		f;
 
 	f = open(path, O_RDONLY);
+	if (f < 0)
+		return (-1);
 	line = get_next_line(f);
 	map->height = 0;
 	while (line)
@@ -66,8 +68,8 @@ int	read_map(t_map *map, char *path)
 	int		i;
 	int		f;
 
-	if (!get_map_height(map, path))
-		return (close(f), 0);
+	if (get_map_height(map, path) <= 0)
+		return (0);
 	f = open(path, O_RDONLY);
 	state = 1;
 	line = get_next_line(f);

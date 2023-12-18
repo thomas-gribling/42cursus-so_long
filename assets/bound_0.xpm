@@ -1,7 +1,7 @@
 /* XPM */
-static char * wall_xpm[] = {
+static char * bound_0_xpm[] = {
 "75 75 1 1",
-" 	c #FF0000",
+" 	c #000000",
 "                                                                           ",
 "                                                                           ",
 "                                                                           ",
