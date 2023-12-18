@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/18 09:57:42 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:26:24 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@
 # define KEY_S 115
 # define KEY_D 100
 
+# define MOVE_UP 0
+# define MOVE_RIGHT 1
+# define MOVE_DOWN 2
+# define MOVE_LEFT 3
+
+typedef struct s_map
+{
+	char		*name;
+	char		**content;
+	int			width;
+	int			height;
+}				t_map;
+
 typedef struct s_sprite
 {
 	void		*ptr;
@@ -39,19 +52,18 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	int			p_pos[2];
+	t_map		*map;
 	t_sprite	*textures;
 }				t_game;
 
-typedef struct s_map
-{
-	char		*name;
-	char		**content;
-	int			width;
-	int			height;
-}				t_map;
-
+int		read_map(t_map *map, char *path);
+int		check_bounds(t_map *map);
 int		load_map(t_map *map, char *path);
-void	generate_map(t_game *game, t_map map);
+void	generate_map(t_game *game);
+
+void	player_move(t_game *game, int dir);
+int		refresh_player(t_game *game);
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
