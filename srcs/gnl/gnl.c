@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 08:56:36 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/18 08:50:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:55:32 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "../../include/so_long.h"
-#include "../../include/get_next_line.h"
+#include "../../include/gnl.h"
 
 char	*ft_fill_stash(int fd, char *stash)
 {

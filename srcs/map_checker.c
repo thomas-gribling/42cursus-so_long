@@ -6,11 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:17:11 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/18 14:58:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:55:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/get_next_line.h"
+#include "../include/gnl.h"
 #include "../include/so_long.h"
 
 static int	get_map_height(t_map *map, char *path)

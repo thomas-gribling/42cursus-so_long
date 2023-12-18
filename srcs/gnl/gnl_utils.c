@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   gnl_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 09:44:01 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/18 08:57:55 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/18 19:55:19 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/get_next_line.h"
+#include "../../include/gnl.h"
 #include "../../include/so_long.h"
 
 char	*ft_strjoin(char *s1, char *s2)
