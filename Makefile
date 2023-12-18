@@ -9,7 +9,7 @@ CC = gcc
 CFLAGS = 
 MLXFLAGS = -lX11 -lXext
 
-FILES = main.c map.c
+FILES = main.c map.c utils.c gnl/get_next_line.c gnl/get_next_line_utils.c
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 
 %.o: %.c

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/15 16:02:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/18 09:57:42 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define SO_LONG_H
 
 # include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
 
 # define GAME_TITLE "so_long"
 # define TILE_SIZE 75
@@ -47,6 +50,10 @@ typedef struct s_map
 	int			height;
 }				t_map;
 
+int		load_map(t_map *map, char *path);
 void	generate_map(t_game *game, t_map map);
+
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s);
 
 #endif

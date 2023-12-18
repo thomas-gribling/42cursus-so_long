@@ -6,13 +6,12 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:42:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/15 18:42:37 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/18 10:10:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/so_long.h"
-#include <stdio.h>
 
 int	close_game(t_game *game)
 {
@@ -54,17 +53,11 @@ int	main(void)
 	t_map		map;
 	int			i;
 
-	// temporary map (will read from .ber)
-	map.content = malloc(6 * sizeof(char *));
-	map.content[0] = "1111111111";
-	map.content[1] = "10C010C1C1";
-	map.content[2] = "1010101101";
-	map.content[3] = "1E100C0P01";
-	map.content[4] = "1111111111";
-	map.content[5] = NULL;
-	
-	map.width = 10 * TILE_SIZE;
-	map.height = 5 * TILE_SIZE;
+	if (!load_map(&map, "maps/subject_2.ber"))
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, map.width, map.height, GAME_TITLE);
 	
@@ -78,4 +71,5 @@ int	main(void)
 	mlx_hook(game.win, 2, 1L<<0, key_pressed, &game);
 	mlx_hook(game.win, 17, 0L, close_game, &game);
 	mlx_loop(game.mlx);
+	return (0);
 }
