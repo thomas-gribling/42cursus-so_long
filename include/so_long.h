@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/18 17:20:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:15:44 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_game
 }				t_game;
 
 int		close_game(t_game *game);
+
+int		load_assets(t_game *g);
 
 int		read_map(t_map *map, char *path);
 int		check_bounds(t_map *map);
