@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/19 14:15:44 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:39:04 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 
 # define GAME_TITLE "so_long"
-# define TILE_SIZE 75
+# define TILE_SIZE 76
 
 # define KEY_ESCAPE 65307
 # define KEY_W 119
@@ -64,6 +64,7 @@ typedef struct s_game
 	void		*win;
 	int			p_pos[2];
 	int			items;
+	int			moves;
 	t_map		*map;
 	t_sprite	*textures;
 }				t_game;
@@ -78,7 +79,8 @@ int		load_map(t_game *game, char *path);
 void	generate_map(t_game *game);
 
 void	player_move(t_game *game, int dir);
-void	init_move(t_game *game);
+void	init_move(t_game *game, int x_c, int y_c);
+void	put_moves(int n);
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);

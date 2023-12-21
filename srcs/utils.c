@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 08:50:55 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/18 09:39:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:40:34 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,23 @@ char	*ft_strdup(const char *s)
 	}
 	dest[i] = '\0';
 	return (dest);
+}
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putunsigned(unsigned int n)
+{
+	if (n > 9)
+		ft_putunsigned(n / 10);
+	ft_putchar(n % 10 + '0');
+}
+
+void	put_moves(int n)
+{
+	write(1, "Total moves: ", 13);
+	ft_putunsigned(n);
+	ft_putchar('\n');
 }
