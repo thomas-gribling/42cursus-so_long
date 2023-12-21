@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:17:11 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/18 19:55:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:13:46 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	check_bounds(t_map *map)
 			if (map->content[0][map->width - 2] != '1')
 				return (0);
 	}
-		i = -1;
+	i = -1;
 	while (map->content[s][++i] && map->content[s][i] != '\n')
 		if (map->content[0][i] != '1')
 			return (0);

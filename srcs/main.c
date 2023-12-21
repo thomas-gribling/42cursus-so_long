@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:42:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 10:22:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:12:48 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	close_game(t_game *game)
 {
 	int	i;
-	
+
 	mlx_clear_window(game->mlx, game->win);
 	i = -1;
 	while (++i < TEXTURE_AMT)
@@ -43,7 +43,7 @@ int	main(int ac, char **av)
 	t_game		g;
 
 	if (ac != 2)
-		return(write(2, "Error\n", 6), 1);
+		return (write(2, "Error\n", 6), 1);
 	g.map = malloc(sizeof(t_map));
 	if (!load_map(&g, av[1]))
 	{

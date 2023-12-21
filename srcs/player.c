@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:47:02 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 10:37:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:13:13 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	check_tile(t_game *game, int x, int y)
 static int	can_move(t_game *game, int x, int y)
 {
 	char	c;
-	
+
 	c = game->map->content[y][x];
 	if (c == '1')
 		return (0);
@@ -49,9 +49,7 @@ void	init_move(t_game *g, int x_c, int y_c)
 	g->p_pos[1] += y_c;
 	x = g->p_pos[0] * TILE_SIZE;
 	y = g->p_pos[1] * TILE_SIZE;
-	//mlx_clear_window(g->mlx, g->win);
 	check_tile(g, x / TILE_SIZE, y / TILE_SIZE);
-	//generate_map(g);
 	mlx_put_image_to_window(g->mlx, g->win, g->textures[TEX_PLAYER].ptr, x, y);
 	if (x_c != 0 || y_c != 0)
 	{
@@ -78,6 +76,6 @@ void	player_move(t_game *game, int keycode)
 		if (can_move(game, p_x, p_y + 1))
 			init_move(game, 0, 1);
 	if (keycode == KEY_A)
-		if(can_move(game, p_x - 1, p_y))
+		if (can_move(game, p_x - 1, p_y))
 			init_move(game, -1, 0);
 }

@@ -6,13 +6,13 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 10:24:31 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 10:50:03 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/21 14:21:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-static char	*get_situation(t_game *g, int x, int y)
+char	*get_situation(t_game *g, int x, int y)
 {
 	char	*out;
 
@@ -36,10 +36,10 @@ static char	*get_situation(t_game *g, int x, int y)
 	return (out);
 }
 
-int	get_wall(t_game *g, int x, int y)
+/*int	get_wall(t_game *g, int x, int y)
 {
 	char	*s;
 
 	s = get_situation(g, x / TILE_SIZE, y / TILE_SIZE);
 	return (0);
-}
+}*/

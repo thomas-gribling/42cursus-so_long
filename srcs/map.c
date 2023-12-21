@@ -6,13 +6,15 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:07:22 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 09:20:49 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:13:30 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/so_long.h"
 
+// will change this: currectly sets a special texture on the bounds
+//					 plan to set a special texture for every wall
 int	get_wall_tex(t_game *game, int x, int y)
 {
 	int	max_x;
@@ -79,7 +81,7 @@ void	get_player_coordinates(t_game *game)
 {
 	int	x;
 	int	y;
-	
+
 	game->map->width *= TILE_SIZE;
 	game->map->height *= TILE_SIZE;
 	y = -1;
