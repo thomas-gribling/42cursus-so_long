@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:42:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 09:47:28 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:22:48 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	close_game(t_game *game)
 	i = -1;
 	while (++i < TEXTURE_AMT)
 		mlx_destroy_image(game->mlx, game->textures[i].ptr);
+	free_tab(game->map->content);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_loop_end(game->mlx);
 	return (0);

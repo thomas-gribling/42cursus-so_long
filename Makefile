@@ -14,7 +14,7 @@ CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -lX11 -lXext
 
 FILES = main.c map.c map_checker.c player.c utils.c \
-		assets.c gnl/gnl.c gnl/gnl_utils.c
+		assets.c walls.c gnl/gnl.c gnl/gnl_utils.c
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 
 %.o: %.c

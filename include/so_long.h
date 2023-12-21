@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 09:39:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:37:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,7 @@ void	put_moves(int n);
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
+char	*ft_strjoin(char *s1, char *s2);
+void	free_tab(char **tab);
 
 #endif
