@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 08:50:55 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 09:58:33 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/22 10:46:00 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,16 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (s3);
 }
 
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
+}
+
 void	free_tab(char **tab)
 {
 	int	i;
@@ -80,6 +90,32 @@ void	free_tab(char **tab)
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
+}
+
+char	**tab_dup(char **tab, int start)
+{
+	char	**out;
+	int		i;
+
+	i = 0;
+	while (tab[start + i])
+		i++;
+	out = malloc((i + 1) * sizeof(char *));
+	i = start - 1;
+	while (tab[++i])
+		out[i - start] = ft_strdup(tab[i]);
+	out[i - start] = NULL;
+	return (out);
+}
+
+void	ft_puterror(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	write(2, str, i);
 }
 
 void	ft_putchar(char c)

@@ -6,15 +6,13 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:07:22 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 16:13:30 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/22 11:28:34 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/so_long.h"
 
-// will change this: currectly sets a special texture on the bounds
-//					 plan to set a special texture for every wall
 int	get_wall_tex(t_game *game, int x, int y)
 {
 	int	max_x;
@@ -22,22 +20,8 @@ int	get_wall_tex(t_game *game, int x, int y)
 
 	max_x = game->map->width - TILE_SIZE;
 	max_y = game->map->height - TILE_SIZE;
-	if (y == 0 && x == 0)
-		return (TEX_BOUND_0);
-	if (y == 0 && x > 0 && x < max_x)
-		return (TEX_BOUND_1);
-	if (y == 0 && x == max_x)
-		return (TEX_BOUND_2);
-	if (y > 0 && y < max_y && x == max_x)
-		return (TEX_BOUND_3);
-	if (y == max_y && x == max_x)
-		return (TEX_BOUND_4);
-	if (y == max_y && x > 0 && x < max_x)
-		return (TEX_BOUND_5);
-	if (y == max_y && x == 0)
-		return (TEX_BOUND_6);
-	if (y > 0 && y < max_y && x == 0)
-		return (TEX_BOUND_7);
+	if (y == 0 || x == 0 || y == max_y || x == max_x)
+		return (TEX_BOUND);
 	return (TEX_WALL);
 }
 
@@ -129,6 +113,8 @@ int	count_chars(t_game *game)
 
 int	load_map(t_game *game, char *path)
 {
+	char	**tmp;
+	
 	if (!read_map(game->map, path))
 		return (0);
 	if (!check_bounds(game->map))
@@ -136,5 +122,11 @@ int	load_map(t_game *game, char *path)
 	get_player_coordinates(game);
 	if (!count_chars(game))
 		return (0);
+	game->map->debug_count = game->items + 1;
+	tmp = tab_dup(game->map->content, 0);
+	check_path(game, tmp, game->p_pos[0], game->p_pos[1]);
+	free_tab(tmp);
+//	if (game->map->debug_count)
+//		return (0);
 	return (1);
 }

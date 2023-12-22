@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 15:03:45 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/22 10:56:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,13 @@
 # define KEY_S 115
 # define KEY_D 100
 
-# define TEXTURE_AMT 13
+# define TEXTURE_AMT 6
 # define TEX_GROUND 0
 # define TEX_WALL 1
 # define TEX_COLLECT 2
 # define TEX_EXIT 3
 # define TEX_PLAYER 4
-# define TEX_BOUND_0 5
-# define TEX_BOUND_1 6
-# define TEX_BOUND_2 7
-# define TEX_BOUND_3 8
-# define TEX_BOUND_4 9
-# define TEX_BOUND_5 10
-# define TEX_BOUND_6 11
-# define TEX_BOUND_7 12
+# define TEX_BOUND 5
 
 typedef struct s_map
 {
@@ -48,6 +41,7 @@ typedef struct s_map
 	char		**content;
 	int			width;
 	int			height;
+	int			debug_count;
 }				t_map;
 
 typedef struct s_sprite
@@ -77,6 +71,7 @@ int		read_map(t_map *map, char *path);
 int		check_bounds(t_map *map);
 int		load_map(t_game *game, char *path);
 void	generate_map(t_game *game);
+void	check_path(t_game *g, char **tmp, int x, int y);
 
 void	player_move(t_game *game, int dir);
 void	init_move(t_game *game, int x_c, int y_c);
@@ -85,6 +80,9 @@ void	put_moves(int n);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
+int		ft_strcmp(char *s1, char *s2);
 void	free_tab(char **tab);
+char	**tab_dup(char **tab, int start);
+void	ft_puterror(char *str);
 
 #endif

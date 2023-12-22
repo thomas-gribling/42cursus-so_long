@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:17:11 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 16:13:46 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/22 11:18:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int	read_map(t_map *map, char *path)
 	return (close(f), state);
 }
 
-// to fix
 int	check_bounds(t_map *map)
 {
 	int	i;
@@ -104,15 +103,30 @@ int	check_bounds(t_map *map)
 	i = 0;
 	while (map->content[++i + 1])
 	{
-		if (map->content[0][0] != '1')
+		if (map->content[i][0] != '1')
 			return (0);
-		if (map->content[0][map->width - 1] != '1')
-			if (map->content[0][map->width - 2] != '1')
+		if (map->content[i][map->width - 1] != '1')
+			if (map->content[i][map->width - 2] != '1')
 				return (0);
 	}
 	i = -1;
 	while (map->content[s][++i] && map->content[s][i] != '\n')
-		if (map->content[0][i] != '1')
+		if (map->content[s][i] != '1')
 			return (0);
 	return (1);
+}
+
+void	check_path(t_game *g, char **tmp, int x, int y)
+{
+	if (tmp[y][x] == '1')
+		return ;
+	if (tmp[y][x] == 'C' || tmp[y][x] == 'E')
+	{
+		tmp[y][x] = '2';
+		g->map->debug_count--;
+	}
+	check_path(g, tmp, x - 1, y);
+	check_path(g, tmp, x + 1, y);
+	check_path(g, tmp, x, y - 1);
+	check_path(g, tmp, x, y + 1);
 }

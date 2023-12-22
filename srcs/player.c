@@ -6,14 +6,14 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:47:02 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/21 16:13:13 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/22 10:19:55 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/so_long.h"
 
-static void	check_tile(t_game *game, int x, int y)
+static int	check_tile(t_game *game, int x, int y)
 {
 	if (game->map->content[y][x] == 'C')
 	{
@@ -21,7 +21,11 @@ static void	check_tile(t_game *game, int x, int y)
 		game->items--;
 	}
 	else if (game->map->content[y][x] == 'E')
+	{
 		close_game(game);
+		return (0);
+	}
+	return (1);
 }
 
 static int	can_move(t_game *game, int x, int y)
@@ -49,7 +53,8 @@ void	init_move(t_game *g, int x_c, int y_c)
 	g->p_pos[1] += y_c;
 	x = g->p_pos[0] * TILE_SIZE;
 	y = g->p_pos[1] * TILE_SIZE;
-	check_tile(g, x / TILE_SIZE, y / TILE_SIZE);
+	if (!check_tile(g, x / TILE_SIZE, y / TILE_SIZE))
+		return ;
 	mlx_put_image_to_window(g->mlx, g->win, g->textures[TEX_PLAYER].ptr, x, y);
 	if (x_c != 0 || y_c != 0)
 	{
