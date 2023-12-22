@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:47:02 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/22 10:19:55 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/22 16:20:37 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int	check_tile(t_game *game, int x, int y)
 	}
 	else if (game->map->content[y][x] == 'E')
 	{
+		game->moves++;
 		close_game(game);
 		return (0);
 	}
