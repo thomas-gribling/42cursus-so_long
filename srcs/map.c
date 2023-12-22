@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:07:22 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/22 11:28:34 by tgriblin         ###   ########.fr       */
+/*   Updated: 2023/12/22 16:12:26 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	load_map(t_game *game, char *path)
 		return (0);
 	game->map->debug_count = game->items + 1;
 	tmp = tab_dup(game->map->content, 0);
-	check_path(game, tmp, game->p_pos[0], game->p_pos[1]);
+//	check_path(game, tmp, game->p_pos[0], game->p_pos[1]); // stack overflow :/
 	free_tab(tmp);
 //	if (game->map->debug_count)
 //		return (0);
