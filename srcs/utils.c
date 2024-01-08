@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 08:50:55 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/22 10:46:00 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/08 08:41:42 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,18 @@ void	ft_putunsigned(unsigned int n)
 	ft_putchar(n % 10 + '0');
 }
 
-void	put_moves(int n)
+void	put_msg(int n, int end)
 {
-	write(1, "Total moves: ", 13);
-	ft_putunsigned(n);
-	ft_putchar('\n');
+	if (end)
+	{
+		write(1, "GG! You won in ", 15);
+		ft_putunsigned(n);
+		write(1, " moves!\n", 8);
+	}
+	else
+	{
+		write(1, "Total moves: ", 13);
+		ft_putunsigned(n);
+		ft_putchar('\n');
+	}
 }

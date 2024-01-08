@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:09:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/22 10:22:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/08 09:02:40 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static t_sprite	create_sprite(void *mlx_ptr, char *path, int width, int height)
 {
 	t_sprite	s;
 
-	s.path = path;
 	s.width = width;
 	s.height = height;
 	s.ptr = mlx_xpm_file_to_image(mlx_ptr, path, &s.width, &s.height);

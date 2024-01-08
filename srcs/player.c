@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:47:02 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/22 16:20:37 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/08 08:42:24 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	check_tile(t_game *game, int x, int y)
 	else if (game->map->content[y][x] == 'E')
 	{
 		game->moves++;
+		put_msg(game->moves, 1);
 		close_game(game);
 		return (0);
 	}
@@ -61,7 +62,7 @@ void	init_move(t_game *g, int x_c, int y_c)
 	{
 		mlx_put_image_to_window(g->mlx, g->win, g->textures[TEX_GROUND].ptr, initial[0], initial[1]);
 		g->moves++;
-		put_moves(g->moves);
+		put_msg(g->moves, 0);
 	}
 }
 

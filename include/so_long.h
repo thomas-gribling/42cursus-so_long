@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/22 10:56:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/08 09:02:45 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 
 typedef struct s_map
 {
-	char		*name;
 	char		**content;
 	int			width;
 	int			height;
@@ -47,7 +46,6 @@ typedef struct s_map
 typedef struct s_sprite
 {
 	void		*ptr;
-	char		*path;
 	int			width;
 	int			height;
 }				t_sprite;
@@ -75,7 +73,7 @@ void	check_path(t_game *g, char **tmp, int x, int y);
 
 void	player_move(t_game *game, int dir);
 void	init_move(t_game *game, int x_c, int y_c);
-void	put_moves(int n);
+void	put_msg(int n, int end);
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);

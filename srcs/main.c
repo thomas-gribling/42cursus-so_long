@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:42:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/22 11:32:12 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/08 09:12:24 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ int	close_game(t_game *game)
 {
 	int	i;
 
-	mlx_clear_window(game->mlx, game->win);
+	//mlx_clear_window(game->mlx, game->win); // useless?
+	free_tab(game->map->content);
+	free(game->map);
 	i = -1;
 	while (++i < TEXTURE_AMT)
-	{
 		mlx_destroy_image(game->mlx, game->textures[i].ptr);
-	}
 	free(game->textures);
-	free_tab(game->map->content);
 	mlx_destroy_window(game->mlx, game->win);
+	//mlx_destroy_display(game->mlx);
 	mlx_loop_end(game->mlx);
-	free(game->map);
-	return (0);
+	//free(game->mlx); // removes leak but make errors
+	exit(0);
 }
 
 int	key_pressed(int keycode, t_game *game)
@@ -42,10 +42,22 @@ int	key_pressed(int keycode, t_game *game)
 	return (0);
 }
 
+int	check_map_format(char *s)
+{
+	int	l;
+
+	l = ft_strlen(s);
+	if (l < 4)
+		return (0);
+	if (s[l - 1] != 'r' || s[l - 2] != 'e' || s[l - 3] != 'b'
+		|| s[l - 4] != '.')
+		return (0);
+	return (1);
+}
+
 int	main(int ac, char **av)
 {
 	t_game		g;
-	int			t;
 
 	if (ac < 2)
 		ft_puterror("Not enough parameters\n");
@@ -55,15 +67,13 @@ int	main(int ac, char **av)
 		return (ft_puterror("Expecting: ./so_long <map>\n"), 1);
 	g.map = malloc(sizeof(t_map));
 	g.map->debug_count = 0;
-	t = ft_strlen(av[1]);
-	if (av[1][t - 1] != 'r' || av[1][t - 2] != 'e' || av[1][t - 3] != 'b'
-		|| av[1][t - 4] != '.')
-			return (free(g.map), ft_puterror("Expecting a \".ber\" map file\n"), 1);
+	if (!check_map_format(av[1]))
+		return (free(g.map), ft_puterror("Expecting a \".ber\" file\n"), 1);
 	if (!load_map(&g, av[1]))
 		return (ft_puterror("Error\n"), 1);
 	g.mlx = mlx_init();
-	load_assets(&g);
 	g.win = mlx_new_window(g.mlx, g.map->width, g.map->height, GAME_TITLE);
+	load_assets(&g);
 	generate_map(&g);
 	g.moves = 0;
 	init_move(&g, 0, 0);
