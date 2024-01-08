@@ -10,7 +10,7 @@ MLX_PATH = mlx/
 MLX_LIB = libmlx_Linux.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -lm
 MLXFLAGS = -lX11 -lXext
 
 FILES = main.c map.c map_checker.c player.c utils.c \

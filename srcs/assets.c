@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:09:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/08 09:02:40 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/08 10:53:20 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,14 @@ int	load_assets(t_game *g)
 	g->textures = malloc(TEXTURE_AMT * sizeof(t_sprite));
 	g->textures[TEX_GROUND] = load_sprite(g, "assets/ground.xpm");
 	g->textures[TEX_WALL] = load_sprite(g, "assets/wall.xpm");
-	g->textures[TEX_COLLECT] = load_sprite(g, "assets/collectible.xpm");
+	g->textures[TEX_BOUND] = load_sprite(g, "assets/wall.xpm");
+	g->textures[TEX_COLLECT_0] = load_sprite(g, "assets/collectible_0.xpm");
+	g->textures[TEX_COLLECT_1] = load_sprite(g, "assets/collectible_1.xpm");
+	g->textures[TEX_COLLECT_2] = load_sprite(g, "assets/collectible_2.xpm");
+	g->textures[TEX_COLLECT_3] = load_sprite(g, "assets/collectible_3.xpm");
+	g->textures[TEX_COLLECT_4] = load_sprite(g, "assets/collectible_4.xpm");
+	g->textures[TEX_COLLECT_5] = load_sprite(g, "assets/collectible_5.xpm");
 	g->textures[TEX_EXIT] = load_sprite(g, "assets/exit.xpm");
 	g->textures[TEX_PLAYER] = load_sprite(g, "assets/player.xpm");
-	g->textures[TEX_BOUND] = load_sprite(g, "assets/wall.xpm");
 	return (1);
 }

@@ -6,12 +6,13 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:07:22 by tgriblin          #+#    #+#             */
-/*   Updated: 2023/12/22 16:12:26 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/08 10:01:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/so_long.h"
+#include <math.h>
 
 int	get_wall_tex(t_game *game, int x, int y)
 {
@@ -27,7 +28,8 @@ int	get_wall_tex(t_game *game, int x, int y)
 
 void	place_tile(t_game *game, char c, int x, int y)
 {
-	t_sprite	t;	
+	t_sprite	t;
+	int			tex;
 
 	x *= TILE_SIZE;
 	y *= TILE_SIZE;
@@ -39,7 +41,10 @@ void	place_tile(t_game *game, char c, int x, int y)
 	if (c == '1')
 		t = game->textures[get_wall_tex(game, x, y)];
 	else if (c == 'C')
-		t = game->textures[TEX_COLLECT];
+	{
+		tex = rand() % (TEX_COLLECT_5 - TEX_COLLECT_0 + 1) + TEX_COLLECT_0;
+		t = game->textures[tex];
+	}
 	else if (c == 'E')
 		t = game->textures[TEX_EXIT];
 	else
