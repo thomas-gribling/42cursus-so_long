@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:09:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 14:29:19 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:29:35 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	load_assets(t_game *g)
 		g->textures = malloc(TEX_AMT * sizeof(t_sprite));
 	g->textures[TEX_GROUND] = load_sprite(g, "assets/ground.xpm");
 	g->textures[TEX_WALL] = load_sprite(g, "assets/wall.xpm");
-	g->textures[TEX_BOUND] = load_sprite(g, "assets/wall.xpm");
+	g->textures[TEX_BOUND] = load_sprite(g, "assets/bound.xpm");
 	g->textures[TEX_COLLECT_0] = load_sprite(g, "assets/collectible_0.xpm");
 	g->textures[TEX_COLLECT_1] = load_sprite(g, "assets/collectible_1.xpm");
 	g->textures[TEX_COLLECT_2] = load_sprite(g, "assets/collectible_2.xpm");
