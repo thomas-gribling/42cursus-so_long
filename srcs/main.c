@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:19:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 13:28:35 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:38:38 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,19 @@ static void	free_m(t_map *map)
 	free(map);
 }
 
-int	main(int ac, char **av)
+static void	arguments_errors(int ac)
 {
-	t_game		g;
-
 	if (ac < 2)
 		ft_puterror("Not enough parameters\n");
 	if (ac > 2)
 		ft_puterror("Too much parameters\n");
+}
+
+int	main(int ac, char **av)
+{
+	t_game		g;
+
+	arguments_errors(ac);
 	if (ac != 2)
 		return (ft_puterror("Expecting: ./so_long <map>\n"), 1);
 	g.map = malloc(sizeof(t_map));
@@ -41,6 +46,8 @@ int	main(int ac, char **av)
 	generate_map(&g);
 	g.moves = 0;
 	init_move(&g, 0, 0);
+	if (BONUS_MODE)
+		display_count(&g);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
 	mlx_loop(g.mlx);

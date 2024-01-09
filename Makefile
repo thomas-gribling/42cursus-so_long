@@ -13,9 +13,11 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -lm
 MLXFLAGS = -lX11 -lXext
 
-FILES = main.c so_long.c map_1.c map_2.c map_3.c \
-		player.c assets.c utils_1.c utils_2.c \
-		gnl/gnl.c gnl/gnl_utils.c
+FILES = main.c so_long.c player.c assets.c \
+		map_1.c map_2.c map_3.c utils_1.c utils_2.c \
+		gnl/gnl.c gnl/gnl_utils.c \
+		moves_bonus.c utils_bonus.c
+
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 
 BONUS_MODE = 0

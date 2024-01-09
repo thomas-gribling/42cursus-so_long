@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:47:02 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 11:18:38 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:53:51 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,6 @@ void	player_move(t_game *game, int keycode)
 	if (keycode == KEY_A)
 		if (can_move(game, p_x - 1, p_y))
 			init_move(game, -1, 0);
+	if (BONUS_MODE)
+		display_count(game);
 }

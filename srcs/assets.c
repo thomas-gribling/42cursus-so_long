@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:09:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/08 10:53:20 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:29:19 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,26 @@ static t_sprite	load_sprite(t_game *g, char *path)
 	return (sprite);
 }
 
+void	load_assets_bonus(t_game *g)
+{
+	g->textures[TEX_ZERO] = load_sprite(g, "assets/digits/0.xpm");
+	g->textures[TEX_ONE] = load_sprite(g, "assets/digits/1.xpm");
+	g->textures[TEX_TWO] = load_sprite(g, "assets/digits/2.xpm");
+	g->textures[TEX_THREE] = load_sprite(g, "assets/digits/3.xpm");
+	g->textures[TEX_FOUR] = load_sprite(g, "assets/digits/4.xpm");
+	g->textures[TEX_FIVE] = load_sprite(g, "assets/digits/5.xpm");
+	g->textures[TEX_SIX] = load_sprite(g, "assets/digits/6.xpm");
+	g->textures[TEX_SEVEN] = load_sprite(g, "assets/digits/7.xpm");
+	g->textures[TEX_EIGHT] = load_sprite(g, "assets/digits/8.xpm");
+	g->textures[TEX_NINE] = load_sprite(g, "assets/digits/9.xpm");
+}
+
 int	load_assets(t_game *g)
 {
-	g->textures = malloc(TEXTURE_AMT * sizeof(t_sprite));
+	if (BONUS_MODE)
+		g->textures = malloc((TEX_AMT + BONUS_TEX_AMT) * sizeof(t_sprite));
+	else
+		g->textures = malloc(TEX_AMT * sizeof(t_sprite));
 	g->textures[TEX_GROUND] = load_sprite(g, "assets/ground.xpm");
 	g->textures[TEX_WALL] = load_sprite(g, "assets/wall.xpm");
 	g->textures[TEX_BOUND] = load_sprite(g, "assets/wall.xpm");
@@ -45,5 +62,7 @@ int	load_assets(t_game *g)
 	g->textures[TEX_COLLECT_5] = load_sprite(g, "assets/collectible_5.xpm");
 	g->textures[TEX_EXIT] = load_sprite(g, "assets/exit.xpm");
 	g->textures[TEX_PLAYER] = load_sprite(g, "assets/player.xpm");
+	if (BONUS_MODE)
+		load_assets_bonus(g);
 	return (1);
 }
