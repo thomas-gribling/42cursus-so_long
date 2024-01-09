@@ -20,10 +20,11 @@ OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 
 BONUS_FILES = $(FILES)
 BONUS_OBJECTS = $(addprefix $(SRCS), $(BONUS_FILES:.c=.o))
+BONUS_MODE = 0
 
 %.o: %.c
 	@echo "$(YELLOW)Creating $@$(RESET)"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ -D BONUS_MODE=$(BONUS_MODE)
 
 all: $(NAME)
 
@@ -35,9 +36,10 @@ $(NAME): $(OBJECTS)
 	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -I$(MLX_PATH) -I$(INCLUDE)
 	@echo "$(BOLD_GREEN)Done!$(RESET)"
 
-bonus: $(BONUS_OBJECTS)
+bonus: BONUS_MODE = 1
+bonus: clean $(BONUS_OBJECTS)
 	@echo "$(YELLOW)Compiling $(NAME)$(RESET)"
-	$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $(NAME) -I$(MLX_PATH) -I$(INCLUDE)
+	@$(CC) $(CFLAGS) $(BONUS_OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $(NAME) -I$(MLX_PATH) -I$(INCLUDE)
 	@echo "$(BOLD_GREEN)Done!$(RESET)"
 
 clean:

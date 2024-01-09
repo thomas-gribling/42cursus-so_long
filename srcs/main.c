@@ -6,14 +6,14 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:19:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 11:00:02 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:28:35 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/so_long.h"
 
-void	free_m(t_map *map)
+static void	free_m(t_map *map)
 {
 	free_tab(map->content);
 	free(map);

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:47:02 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/08 14:45:49 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:18:38 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	init_move(t_game *g, int x_c, int y_c)
 		tmp = g->textures[TEX_GROUND].ptr;
 		mlx_put_image_to_window(g->mlx, g->win, tmp, initial[0], initial[1]);
 		g->moves++;
-		put_msg(g->moves, 0);
+		if (!BONUS_MODE)
+			put_msg(g->moves, 0);
 	}
 }
 
