@@ -6,12 +6,12 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:46:18 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 14:39:26 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:58:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
-#include "../mlx/mlx.h"
+#include "../../include/so_long.h"
+#include "../../mlx/mlx.h"
 
 void	display_count(t_game *g)
 {
@@ -31,4 +31,5 @@ void	display_count(t_game *g)
 		mlx_put_image_to_window(g->mlx, g->win, t.ptr, x, y);
 		x += 34;
 	}
+	free(moves);
 }

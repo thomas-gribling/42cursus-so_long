@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:42:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 14:29:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:58:32 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@
 int	close_game(t_game *game)
 {
 	int	i;
+	int	limit;
 
 	free_tab(game->map->content);
 	free(game->map);
 	i = -1;
-	while (++i < TEX_AMT)
+	limit = TEX_AMT;
+	if (BONUS_MODE)
+		limit += BONUS_TEX_AMT;
+	while (++i < limit)
 		mlx_destroy_image(game->mlx, game->textures[i].ptr);
 	free(game->textures);
 	mlx_destroy_window(game->mlx, game->win);

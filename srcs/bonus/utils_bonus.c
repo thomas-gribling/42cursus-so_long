@@ -6,11 +6,11 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:57:34 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 13:52:36 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:53:55 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../../include/so_long.h"
 
 static int	ft_pow(int n, int pow)
 {
