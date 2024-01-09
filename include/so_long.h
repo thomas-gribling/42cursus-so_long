@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/08 14:30:20 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 08:54:09 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@
 # define TEX_COLLECT_5 8
 # define TEX_EXIT 9
 # define TEX_PLAYER 10
+
+# ifndef BONUS_MODE
+#  define BONUS_MODE 0
+# endif
 
 typedef struct s_map
 {

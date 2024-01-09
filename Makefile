@@ -13,12 +13,12 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -lm
 MLXFLAGS = -lX11 -lXext
 
-FILES = main.c so_long.c map.c map_checker.c player.c \
-		utils.c assets.c gnl/gnl.c gnl/gnl_utils.c
+FILES = main.c so_long.c map_1.c map_2.c map_3.c \
+		player.c assets.c utils_1.c utils_2.c \
+		gnl/gnl.c gnl/gnl_utils.c
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 
-BONUS_FILES = main_bonus.c so_long.c map.c map_checker.c player.c \
-				utils.c assets.c gnl/gnl.c gnl/gnl_utils.c
+BONUS_FILES = $(FILES)
 BONUS_OBJECTS = $(addprefix $(SRCS), $(BONUS_FILES:.c=.o))
 
 %.o: %.c
@@ -37,7 +37,7 @@ $(NAME): $(OBJECTS)
 
 bonus: $(BONUS_OBJECTS)
 	@echo "$(YELLOW)Compiling $(NAME)$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $(NAME) -I$(MLX_PATH) -I$(INCLUDE)
+	$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $(NAME) -I$(MLX_PATH) -I$(INCLUDE)
 	@echo "$(BOLD_GREEN)Done!$(RESET)"
 
 clean:

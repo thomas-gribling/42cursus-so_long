@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   map_2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:17:11 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/08 14:29:04 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 09:52:57 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ static int	get_map_height(t_map *map, char *path)
 	return (map->height);
 }
 
+static int	check_char(char c, int len, int i)
+{
+	if (c != '0' && c != '1' && c != 'C')
+	{
+		if (c != 'E' && c != 'P')
+		{
+			if (c == '\n')
+			{
+				if (i != len - 1)
+					return (0);
+			}
+			else
+				return (0);
+		}
+	}
+	return (1);
+}
+
 static int	check_line(char	*line, int map_width)
 {
 	int	len;
@@ -43,17 +61,8 @@ static int	check_line(char	*line, int map_width)
 	len = ft_strlen(line);
 	i = -1;
 	while (line[++i])
-		if (line[i] != '0' && line[i] != '1' && line[i] != 'C')
-			if (line[i] != 'E' && line[i] != 'P')
-			{
-				if (line[i] == '\n')
-				{
-					if (i != len - 1)
-						return (0);
-				}
-				else
-					return (0);
-			}
+		if (!check_char(line[i], len, i))
+			return (0);
 	if (len == map_width && line[len - 1] != '\n')
 		return (1);
 	if (len - 1 == map_width && line[len - 1] == '\n')
@@ -114,19 +123,4 @@ int	check_bounds(t_map *map)
 		if (map->content[s][i] != '1')
 			return (0);
 	return (1);
-}
-
-void	check_path(t_game *g, char **tmp, int x, int y)
-{
-	if (tmp[y][x] == '1')
-		return ;
-	if (tmp[y][x] == 'C' || tmp[y][x] == 'E')
-	{
-		tmp[y][x] = '2';
-		g->map->debug_count--;
-	}
-	check_path(g, tmp, x - 1, y);
-	check_path(g, tmp, x + 1, y);
-	check_path(g, tmp, x, y - 1);
-	check_path(g, tmp, x, y + 1);
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:42:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/08 14:30:01 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 09:21:43 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	close_game(t_game *game)
 {
 	int	i;
 
-	//mlx_clear_window(game->mlx, game->win); // useless?
 	free_tab(game->map->content);
 	free(game->map);
 	i = -1;
@@ -25,9 +24,10 @@ int	close_game(t_game *game)
 		mlx_destroy_image(game->mlx, game->textures[i].ptr);
 	free(game->textures);
 	mlx_destroy_window(game->mlx, game->win);
-	//mlx_destroy_display(game->mlx);
+	if (game->mlx)
+		mlx_destroy_display(game->mlx);
 	mlx_loop_end(game->mlx);
-	//free(game->mlx); // removes leak but make errors
+	free(game->mlx);
 	exit(0);
 }
 
