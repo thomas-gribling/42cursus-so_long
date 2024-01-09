@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 08:54:09 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 10:28:46 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int		read_map(t_map *map, char *path);
 int		check_bounds(t_map *map);
 int		load_map(t_game *game, char *path);
 void	generate_map(t_game *game);
-void	check_path(t_game *g, char **tmp, int x, int y);
 
 void	player_move(t_game *game, int dir);
 void	init_move(t_game *game, int x_c, int y_c);

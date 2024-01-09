@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:50:29 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 10:00:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 10:51:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,11 @@ int	count_chars(t_game *game)
 
 void	check_path(t_game *g, char **tmp, int x, int y)
 {
-	if (tmp[y][x] == '1')
+	if (tmp[y][x] == '1' || tmp[y][x] == '2')
 		return ;
 	if (tmp[y][x] == 'C' || tmp[y][x] == 'E')
-	{
-		tmp[y][x] = '2';
 		g->map->debug_count--;
-	}
+	tmp[y][x] = '2';
 	check_path(g, tmp, x - 1, y);
 	check_path(g, tmp, x + 1, y);
 	check_path(g, tmp, x, y - 1);
@@ -90,9 +88,9 @@ int	load_map(t_game *game, char *path)
 		return (0);
 	game->map->debug_count = game->items + 1;
 	tmp = tab_dup(game->map->content, 0);
-	//check_path(game, tmp, game->p_pos[0], game->p_pos[1]); //stack overflow
+	check_path(game, tmp, game->p_pos[0], game->p_pos[1]);
 	free_tab(tmp);
-	//if (game->map->debug_count)
-	//	return (0);
+	if (game->map->debug_count)
+		return (0);
 	return (1);
 }

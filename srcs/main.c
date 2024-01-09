@@ -6,12 +6,18 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:19:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 09:11:03 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:00:02 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../mlx/mlx.h"
 #include "../include/so_long.h"
+
+void	free_m(t_map *map)
+{
+	free_tab(map->content);
+	free(map);
+}
 
 int	main(int ac, char **av)
 {
@@ -26,9 +32,9 @@ int	main(int ac, char **av)
 	g.map = malloc(sizeof(t_map));
 	g.map->debug_count = 0;
 	if (!check_map_format(av[1]))
-		return (free(g.map), ft_puterror("Expecting a \".ber\" file\n"), 1);
+		return (free_m(g.map), ft_puterror("Expecting a \".ber\" file\n"), 1);
 	if (!load_map(&g, av[1]))
-		return (ft_puterror("Error\n"), 1);
+		return (free_m(g.map), ft_puterror("Error\n"), 1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, g.map->width, g.map->height, GAME_TITLE);
 	load_assets(&g);
@@ -37,7 +43,6 @@ int	main(int ac, char **av)
 	init_move(&g, 0, 0);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
-	//printf("%d", BONUS_MODE); idea to make bonuses
 	mlx_loop(g.mlx);
 	return (0);
 }
