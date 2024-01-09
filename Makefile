@@ -18,8 +18,6 @@ FILES = main.c so_long.c map_1.c map_2.c map_3.c \
 		gnl/gnl.c gnl/gnl_utils.c
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 
-BONUS_FILES = $(FILES)
-BONUS_OBJECTS = $(addprefix $(SRCS), $(BONUS_FILES:.c=.o))
 BONUS_MODE = 0
 
 %.o: %.c
@@ -37,14 +35,11 @@ $(NAME): $(OBJECTS)
 	@echo "$(BOLD_GREEN)Done!$(RESET)"
 
 bonus: BONUS_MODE = 1
-bonus: clean $(BONUS_OBJECTS)
-	@echo "$(YELLOW)Compiling $(NAME)$(RESET)"
-	@$(CC) $(CFLAGS) $(BONUS_OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $(NAME) -I$(MLX_PATH) -I$(INCLUDE)
-	@echo "$(BOLD_GREEN)Done!$(RESET)"
+bonus: clean $(NAME)
 
 clean:
 	@echo Removing objects
-	@rm -rf $(OBJECTS) $(BONUS_OBJECTS)
+	@rm -rf $(OBJECTS)
 
 fclean: clean
 	@echo Removing $(NAME)
