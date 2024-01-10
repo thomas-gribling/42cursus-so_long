@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:57:34 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 14:53:55 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/10 08:37:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,32 @@ char	*ft_itoa(int n)
 	}
 	out[i] = '\0';
 	return (out);
+}
+
+int	ft_atoi(const char *nptr)
+{
+	int	i;
+	int	sign;
+	int	sign_count;
+	int	out;
+
+	i = 0;
+	sign = 1;
+	sign_count = 0;
+	out = 0;
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	while (nptr[i] == '+' || nptr[i] == '-')
+	{
+		if (nptr[i] == '-')
+			sign = -sign;
+		i++;
+		sign_count++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9' && sign_count < 2)
+	{
+		out = 10 * out + nptr[i] - '0';
+		i++;
+	}
+	return (sign * out);
 }

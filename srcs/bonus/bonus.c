@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves_bonus.c                                      :+:      :+:    :+:   */
+/*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:46:18 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 14:58:57 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:58:31 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,26 @@ void	display_count(t_game *g)
 		x += 34;
 	}
 	free(moves);
+}
+
+void	free_enemies(t_enemy **enemies)
+{
+	int	i;
+
+	i = -1;
+	if (!enemies)
+		return ;
+	while (enemies[++i])
+	{
+		free(enemies[i]->moves);
+		free(enemies[i]);
+	}
+	free(enemies);
+}
+
+void	init_bonus(t_game *g)
+{
+	display_count(g);
+	g->map->e = get_enemies(g->map->path);
+	generate_enemies(g);
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:42:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 14:58:32 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:21:05 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	close_game(t_game *game)
 	int	limit;
 
 	free_tab(game->map->content);
+	free(game->map->path);
+	if (BONUS_MODE)
+		free_enemies(game->map->e);
 	free(game->map);
 	i = -1;
 	limit = TEX_AMT;

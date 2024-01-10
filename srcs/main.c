@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:19:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 14:38:38 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:20:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int ac, char **av)
 		return (ft_puterror("Expecting: ./so_long <map>\n"), 1);
 	g.map = malloc(sizeof(t_map));
 	g.map->debug_count = 0;
+	g.map->path = ft_strdup(av[1]);
 	if (!check_map_format(av[1]))
 		return (free_m(g.map), ft_puterror("Expecting a \".ber\" file\n"), 1);
 	if (!load_map(&g, av[1]))
@@ -47,7 +48,7 @@ int	main(int ac, char **av)
 	g.moves = 0;
 	init_move(&g, 0, 0);
 	if (BONUS_MODE)
-		display_count(&g);
+		init_bonus(&g);
 	mlx_hook(g.win, 2, 1L << 0, key_pressed, &g);
 	mlx_hook(g.win, 17, 0L, close_game, &g);
 	mlx_loop(g.mlx);

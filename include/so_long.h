@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 14:29:10 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:59:49 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define TEX_EXIT 9
 # define TEX_PLAYER 10
 
-# define BONUS_TEX_AMT 10
+# define BONUS_TEX_AMT 11
 # define TEX_ZERO 11
 # define TEX_ONE 12
 # define TEX_TWO 13
@@ -51,17 +51,29 @@
 # define TEX_SEVEN 18
 # define TEX_EIGHT 19
 # define TEX_NINE 20
+# define TEX_ENEMY_0 21
 
 # ifndef BONUS_MODE
 #  define BONUS_MODE 0
 # endif
 
+typedef struct s_enemy
+{
+	int			id;
+	int			x;
+	int			y;
+	int			curr_move;
+	char		*moves;
+}				t_enemy;
+
 typedef struct s_map
 {
+	char		*path;
 	char		**content;
 	int			width;
 	int			height;
 	int			debug_count;
+	t_enemy		**e;
 }				t_map;
 
 typedef struct s_sprite
@@ -106,7 +118,14 @@ char	**tab_dup(char **tab, int start);
 void	ft_puterror(char *str);
 
 // BONUS
+void	init_bonus(t_game *g);
 void	display_count(t_game *g);
+t_enemy	**get_enemies(char *map);
+void	generate_enemies(t_game *g);
+void	free_enemies(t_enemy **enemies);
+
 char	*ft_itoa(int n);
+int		ft_atoi(const char *nptr);
+char	**ft_split(char const *s, char c);
 
 #endif

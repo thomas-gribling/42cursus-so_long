@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:09:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 15:29:35 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:36:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	load_assets_bonus(t_game *g)
 	g->textures[TEX_SEVEN] = load_sprite(g, "assets/digits/7.xpm");
 	g->textures[TEX_EIGHT] = load_sprite(g, "assets/digits/8.xpm");
 	g->textures[TEX_NINE] = load_sprite(g, "assets/digits/9.xpm");
+	g->textures[TEX_ENEMY_0] = load_sprite(g, "assets/enemies/enemy_0.xpm");
 }
 
 int	load_assets(t_game *g)
