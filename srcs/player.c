@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:47:02 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 11:01:01 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 16:50:49 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,17 @@ static int	can_move(t_game *game, int x, int y)
 	return (1);
 }
 
+int	player_tex(int x_c, int y_c)
+{
+	if (x_c == 1)
+		return (TEX_PLAYER_R);
+	if (x_c == -1)
+		return (TEX_PLAYER_L);
+	if (y_c == -1)
+		return (TEX_PLAYER_U);
+	return (TEX_PLAYER);
+}
+
 // maybe find a more optimized way
 void	init_move(t_game *g, int x_c, int y_c)
 {
@@ -68,7 +79,7 @@ void	init_move(t_game *g, int x_c, int y_c)
 	if (!check_tile(g, x / TILE_SIZE, y / TILE_SIZE))
 		return ;
 	if (!BONUS_MODE || !g->is_on_alt)
-		mlx_put_image_to_window(g->mlx, g->win, g->tex[TEX_PLAYER].ptr, x, y);
+		mlx_put_image_to_window(g->mlx, g->win, g->tex[player_tex(x_c, y_c)].ptr, x, y);
 	if (x_c != 0 || y_c != 0)
 	{
 		tmp = g->tex[TEX_GROUND].ptr;

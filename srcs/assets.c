@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:09:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 11:00:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:05:26 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ static t_sprite	load_sprite(t_game *g, char *path)
 
 void	load_assets_bonus(t_game *g)
 {
+	g->tex[TEX_PLAYER_L] = load_sprite(g, "assets/player_l.xpm");
+	g->tex[TEX_PLAYER_R] = load_sprite(g, "assets/player_r.xpm");
+	g->tex[TEX_PLAYER_U] = load_sprite(g, "assets/player_u.xpm");
 	g->tex[TEX_ZERO] = load_sprite(g, "assets/digits/0.xpm");
 	g->tex[TEX_ONE] = load_sprite(g, "assets/digits/1.xpm");
 	g->tex[TEX_TWO] = load_sprite(g, "assets/digits/2.xpm");
@@ -59,7 +62,10 @@ void	load_assets_bonus(t_game *g)
 	g->tex[TEX_SEVEN] = load_sprite(g, "assets/digits/7.xpm");
 	g->tex[TEX_EIGHT] = load_sprite(g, "assets/digits/8.xpm");
 	g->tex[TEX_NINE] = load_sprite(g, "assets/digits/9.xpm");
-	g->tex[TEX_ENEMY_0] = load_sprite(g, "assets/enemies/enemy_0.xpm");
+	g->tex[TEX_ENEMY_0_D] = load_sprite(g, "assets/enemies/enemy_0_d.xpm");
+	g->tex[TEX_ENEMY_0_L] = load_sprite(g, "assets/enemies/enemy_0_l.xpm");
+	g->tex[TEX_ENEMY_0_R] = load_sprite(g, "assets/enemies/enemy_0_r.xpm");
+	g->tex[TEX_ENEMY_0_U] = load_sprite(g, "assets/enemies/enemy_0_u.xpm");
 	g->tex[TEX_TILE_LOSE] = load_sprite(g, "assets/screens/bg_lose.xpm");
 	g->tex[TEX_TILE_WIN] = load_sprite(g, "assets/screens/bg_win.xpm");
 	g->tex[TEX_LOSE_SMALL] = load_sprite(g, "assets/screens/ls.xpm");
@@ -84,7 +90,7 @@ int	load_assets(t_game *g)
 	g->tex[TEX_COLLECT_4] = load_sprite(g, "assets/collectible_4.xpm");
 	g->tex[TEX_COLLECT_5] = load_sprite(g, "assets/collectible_5.xpm");
 	g->tex[TEX_EXIT] = load_sprite(g, "assets/exit.xpm");
-	g->tex[TEX_PLAYER] = load_sprite(g, "assets/player.xpm");
+	g->tex[TEX_PLAYER] = load_sprite(g, "assets/player_d.xpm");
 	if (BONUS_MODE)
 		load_assets_bonus(g);
 	return (1);

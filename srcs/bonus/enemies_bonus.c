@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:16:24 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 11:17:29 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:05:06 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	copy_enemies(t_enemy **old, t_enemy **new)
 		new[i]->moves = ft_strdup(old[i]->moves);
 		new[i]->curr_move = 0;
 		new[i]->player_rep = 0;
+		new[i]->ini[0] = new[i]->x;
+		new[i]->ini[1] = new[i]->y;
 	}
 }
 
@@ -43,6 +45,8 @@ static t_enemy	**add_enemy(t_enemy **old, char *line)
 		while (old[i])
 			i++;
 	new = malloc((i + 3) * sizeof(t_enemy *));
+	if (!new)
+		return (NULL);
 	if (old[0])
 		copy_enemies(old, new);
 	new[i] = malloc(sizeof(t_enemy));
@@ -52,10 +56,10 @@ static t_enemy	**add_enemy(t_enemy **old, char *line)
 	new[i]->moves = ft_strdup(parse[3]);
 	new[i]->curr_move = 0;
 	new[i]->player_rep = 0;
+	new[i]->ini[0] = new[i]->x;
+	new[i]->ini[1] = new[i]->y;
 	new[i + 1] = NULL;
-	free_tab(parse);
-	free_enemies(old);
-	return (new);
+	return (free_tab(parse), free_enemies(old), new);
 }
 
 t_enemy	**get_enemies(char *map)
@@ -72,6 +76,8 @@ t_enemy	**get_enemies(char *map)
 	if (f < 0)
 		return (NULL);
 	enemies = malloc(sizeof(t_enemy *));
+	if (!enemies)
+		return (NULL);
 	enemies[0] = NULL;
 	line = get_next_line(f);
 	while (line)
@@ -81,6 +87,21 @@ t_enemy	**get_enemies(char *map)
 		line = get_next_line(f);
 	}
 	return (enemies);
+}
+
+int	get_enemy_tex(t_game *g, int i)
+{
+	int	curr[2];
+
+	curr[0] = g->map->e[i]->x;
+	curr[1] = g->map->e[i]->y;
+	if (curr[0] > g->map->e[i]->ini[0])
+		return (3);
+	if (curr[0] < g->map->e[i]->ini[0])
+		return (1);
+	if (curr[1] < g->map->e[i]->ini[1])
+		return (2);
+	return (0);
 }
 
 void	generate_enemies(t_game *g)
@@ -97,7 +118,7 @@ void	generate_enemies(t_game *g)
 	{
 		x = g->map->e[i]->x * TILE_SIZE;
 		y = g->map->e[i]->y * TILE_SIZE;
-		t = g->tex[TEX_ENEMY_0 + g->map->e[i]->id];
+		t = g->tex[TEX_ENEMY_0_D + g->map->e[i]->id * 4 + get_enemy_tex(g, i)];
 		if (g->map->content[y / TILE_SIZE][x / TILE_SIZE] == '0')
 			mlx_put_image_to_window(g->mlx, g->win, t.ptr, x, y);
 	}
