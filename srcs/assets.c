@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:09:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 17:05:26 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:33:44 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,26 @@ static t_sprite	load_sprite(t_game *g, char *path)
 	return (sprite);
 }
 
+void	load_assets_enemies(t_game *g)
+{
+	g->tex[TEX_ENEMY_0_D] = load_sprite(g, "assets/enemies/enemy_0_d.xpm");
+	g->tex[TEX_ENEMY_0_L] = load_sprite(g, "assets/enemies/enemy_0_l.xpm");
+	g->tex[TEX_ENEMY_0_R] = load_sprite(g, "assets/enemies/enemy_0_r.xpm");
+	g->tex[TEX_ENEMY_0_U] = load_sprite(g, "assets/enemies/enemy_0_u.xpm");
+	g->tex[TEX_ENEMY_1_D] = load_sprite(g, "assets/enemies/enemy_1_d.xpm");
+	g->tex[TEX_ENEMY_1_L] = load_sprite(g, "assets/enemies/enemy_1_l.xpm");
+	g->tex[TEX_ENEMY_1_R] = load_sprite(g, "assets/enemies/enemy_1_r.xpm");
+	g->tex[TEX_ENEMY_1_U] = load_sprite(g, "assets/enemies/enemy_1_u.xpm");
+	g->tex[TEX_ENEMY_2_D] = load_sprite(g, "assets/enemies/enemy_2_d.xpm");
+	g->tex[TEX_ENEMY_2_L] = load_sprite(g, "assets/enemies/enemy_2_l.xpm");
+	g->tex[TEX_ENEMY_2_R] = load_sprite(g, "assets/enemies/enemy_2_r.xpm");
+	g->tex[TEX_ENEMY_2_U] = load_sprite(g, "assets/enemies/enemy_2_u.xpm");
+	g->tex[TEX_ENEMY_3_D] = load_sprite(g, "assets/enemies/enemy_3_d.xpm");
+	g->tex[TEX_ENEMY_3_L] = load_sprite(g, "assets/enemies/enemy_3_l.xpm");
+	g->tex[TEX_ENEMY_3_R] = load_sprite(g, "assets/enemies/enemy_3_r.xpm");
+	g->tex[TEX_ENEMY_3_U] = load_sprite(g, "assets/enemies/enemy_3_u.xpm");
+}
+
 void	load_assets_bonus(t_game *g)
 {
 	g->tex[TEX_PLAYER_L] = load_sprite(g, "assets/player_l.xpm");
@@ -62,10 +82,7 @@ void	load_assets_bonus(t_game *g)
 	g->tex[TEX_SEVEN] = load_sprite(g, "assets/digits/7.xpm");
 	g->tex[TEX_EIGHT] = load_sprite(g, "assets/digits/8.xpm");
 	g->tex[TEX_NINE] = load_sprite(g, "assets/digits/9.xpm");
-	g->tex[TEX_ENEMY_0_D] = load_sprite(g, "assets/enemies/enemy_0_d.xpm");
-	g->tex[TEX_ENEMY_0_L] = load_sprite(g, "assets/enemies/enemy_0_l.xpm");
-	g->tex[TEX_ENEMY_0_R] = load_sprite(g, "assets/enemies/enemy_0_r.xpm");
-	g->tex[TEX_ENEMY_0_U] = load_sprite(g, "assets/enemies/enemy_0_u.xpm");
+	load_assets_enemies(g);
 	g->tex[TEX_TILE_LOSE] = load_sprite(g, "assets/screens/bg_lose.xpm");
 	g->tex[TEX_TILE_WIN] = load_sprite(g, "assets/screens/bg_win.xpm");
 	g->tex[TEX_LOSE_SMALL] = load_sprite(g, "assets/screens/ls.xpm");

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:47:02 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 16:50:49 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:59:10 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ static int	can_move(t_game *game, int x, int y)
 
 int	player_tex(int x_c, int y_c)
 {
-	if (x_c == 1)
+	if (x_c == 1 && BONUS_MODE)
 		return (TEX_PLAYER_R);
-	if (x_c == -1)
+	if (x_c == -1 && BONUS_MODE)
 		return (TEX_PLAYER_L);
-	if (y_c == -1)
+	if (y_c == -1 && BONUS_MODE)
 		return (TEX_PLAYER_U);
 	return (TEX_PLAYER);
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:16:24 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 17:05:06 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:20:36 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ int	get_enemy_tex(t_game *g, int i)
 	curr[0] = g->map->e[i]->x;
 	curr[1] = g->map->e[i]->y;
 	if (curr[0] > g->map->e[i]->ini[0])
-		return (3);
+		return (2);
 	if (curr[0] < g->map->e[i]->ini[0])
 		return (1);
 	if (curr[1] < g->map->e[i]->ini[1])
-		return (2);
+		return (3);
 	return (0);
 }
 

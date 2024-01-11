@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 17:00:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:09:12 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define TEX_EXIT 9
 # define TEX_PLAYER 10
 
-# define BONUS_TEX_AMT 23
+# define BONUS_TEX_AMT 35
 # define TEX_PLAYER_L 11
 # define TEX_PLAYER_U 12
 # define TEX_PLAYER_R 13
@@ -58,12 +58,24 @@
 # define TEX_ENEMY_0_L 25
 # define TEX_ENEMY_0_R 26
 # define TEX_ENEMY_0_U 27
-# define TEX_TILE_LOSE 28
-# define TEX_TILE_WIN 29
-# define TEX_LOSE_SMALL 30
-# define TEX_WIN_SMALL 31
-# define TEX_LOSE_MEDIUM 32
-# define TEX_WIN_MEDIUM 33
+# define TEX_ENEMY_1_D 28
+# define TEX_ENEMY_1_L 29
+# define TEX_ENEMY_1_R 30
+# define TEX_ENEMY_1_U 31
+# define TEX_ENEMY_2_D 32
+# define TEX_ENEMY_2_L 33
+# define TEX_ENEMY_2_R 34
+# define TEX_ENEMY_2_U 35
+# define TEX_ENEMY_3_D 36
+# define TEX_ENEMY_3_L 37
+# define TEX_ENEMY_3_R 38
+# define TEX_ENEMY_3_U 39
+# define TEX_TILE_LOSE 40
+# define TEX_TILE_WIN 41
+# define TEX_LOSE_SMALL 42
+# define TEX_WIN_SMALL 43
+# define TEX_LOSE_MEDIUM 44
+# define TEX_WIN_MEDIUM 45
 
 # ifndef BONUS_MODE
 #  define BONUS_MODE 0
