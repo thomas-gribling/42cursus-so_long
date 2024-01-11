@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 10:47:02 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 15:08:21 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:01:01 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ static int	check_tile(t_game *game, int x, int y)
 	}
 	else if (game->map->content[y][x] == 'E')
 	{
-		if (game->moves == 2147483647)
-			game->moves = -1;
 		game->moves++;
-		put_msg(game->moves, 1);
-		close_game(game);
-		return (0);
+		if (BONUS_MODE)
+			init_screen(game, 1);
+		else
+		{
+			put_msg(game->moves, 1);
+			close_game(game);
+			return (0);
+		}
 	}
 	return (1);
 }
@@ -49,27 +52,33 @@ void	init_move(t_game *g, int x_c, int y_c)
 {
 	int		x;
 	int		y;
-	int		initial[2];
+	int		ini[2];
 	void	*tmp;
 
-	initial[0] = g->p_pos[0] * TILE_SIZE;
-	initial[1] = g->p_pos[1] * TILE_SIZE;
+	if (BONUS_MODE && g->is_on_alt)
+		return ;
+	if (BONUS_MODE)
+		update_enemies(g, 1, NULL);
+	ini[0] = g->p_pos[0] * TILE_SIZE;
+	ini[1] = g->p_pos[1] * TILE_SIZE;
 	g->p_pos[0] += x_c;
 	g->p_pos[1] += y_c;
 	x = g->p_pos[0] * TILE_SIZE;
 	y = g->p_pos[1] * TILE_SIZE;
 	if (!check_tile(g, x / TILE_SIZE, y / TILE_SIZE))
 		return ;
-	mlx_put_image_to_window(g->mlx, g->win, g->textures[TEX_PLAYER].ptr, x, y);
+	if (!BONUS_MODE || !g->is_on_alt)
+		mlx_put_image_to_window(g->mlx, g->win, g->tex[TEX_PLAYER].ptr, x, y);
 	if (x_c != 0 || y_c != 0)
 	{
-		tmp = g->textures[TEX_GROUND].ptr;
-		mlx_put_image_to_window(g->mlx, g->win, tmp, initial[0], initial[1]);
-		if (g->moves == 2147483647)
-			g->moves = -1;
+		tmp = g->tex[TEX_GROUND].ptr;
+		if (!BONUS_MODE || (!is_player_replacing(g, 1) && !g->is_on_alt))
+			mlx_put_image_to_window(g->mlx, g->win, tmp, ini[0], ini[1]);
 		g->moves++;
 		if (!BONUS_MODE)
 			put_msg(g->moves, 0);
+		else
+			update_enemies(g, 2, ini);
 	}
 }
 
@@ -92,6 +101,6 @@ void	player_move(t_game *game, int keycode)
 	if (keycode == KEY_A)
 		if (can_move(game, p_x - 1, p_y))
 			init_move(game, -1, 0);
-	if (BONUS_MODE)
+	if (BONUS_MODE && !game->is_on_alt)
 		display_count(game);
 }

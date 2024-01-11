@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:16:24 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/10 10:54:33 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:17:29 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	copy_enemies(t_enemy **old, t_enemy **new)
 		new[i]->x = old[i]->x;
 		new[i]->y = old[i]->y;
 		new[i]->moves = ft_strdup(old[i]->moves);
+		new[i]->curr_move = 0;
+		new[i]->player_rep = 0;
 	}
 }
 
@@ -34,13 +36,13 @@ static t_enemy	**add_enemy(t_enemy **old, char *line)
 	t_enemy	**new;
 	char	**parse;
 	int		i;
-	
+
 	parse = ft_split(line, ',');
 	i = 0;
 	if (old[0])
 		while (old[i])
 			i++;
-	new = malloc((i + 3) * sizeof(t_enemy*));
+	new = malloc((i + 3) * sizeof(t_enemy *));
 	if (old[0])
 		copy_enemies(old, new);
 	new[i] = malloc(sizeof(t_enemy));
@@ -48,6 +50,8 @@ static t_enemy	**add_enemy(t_enemy **old, char *line)
 	new[i]->x = ft_atoi(parse[1]);
 	new[i]->y = ft_atoi(parse[2]);
 	new[i]->moves = ft_strdup(parse[3]);
+	new[i]->curr_move = 0;
+	new[i]->player_rep = 0;
 	new[i + 1] = NULL;
 	free_tab(parse);
 	free_enemies(old);
@@ -60,14 +64,14 @@ t_enemy	**get_enemies(char *map)
 	char	*path;
 	char	*line;
 	int		f;
-	
+
 	path = ft_strdup(map);
 	path = ft_strjoin(path, ".e");
 	f = open(path, O_RDONLY);
 	free(path);
 	if (f < 0)
 		return (NULL);
-	enemies = malloc(sizeof(t_enemy*));
+	enemies = malloc(sizeof(t_enemy *));
 	enemies[0] = NULL;
 	line = get_next_line(f);
 	while (line)
@@ -85,7 +89,7 @@ void	generate_enemies(t_game *g)
 	int			i;
 	int			x;
 	int			y;
-	
+
 	if (!g->map->e)
 		return ;
 	i = -1;
@@ -93,8 +97,40 @@ void	generate_enemies(t_game *g)
 	{
 		x = g->map->e[i]->x * TILE_SIZE;
 		y = g->map->e[i]->y * TILE_SIZE;
-		t = g->textures[TEX_ENEMY_0 + g->map->e[i]->id];
+		t = g->tex[TEX_ENEMY_0 + g->map->e[i]->id];
 		if (g->map->content[y / TILE_SIZE][x / TILE_SIZE] == '0')
 			mlx_put_image_to_window(g->mlx, g->win, t.ptr, x, y);
 	}
+}
+
+// prevent moving if wall/exit/collect
+void	move_enemies(t_game *g)
+{
+	int			i;
+	char		c;
+
+	i = -1;
+	while (g->map->e[++i])
+	{
+		g->map->e[i]->ini[0] = g->map->e[i]->x;
+		g->map->e[i]->ini[1] = g->map->e[i]->y;
+		c = g->map->e[i]->moves[g->map->e[i]->curr_move];
+		if (c == '\n' || !c)
+		{
+			g->map->e[i]->curr_move = 0;
+			c = g->map->e[i]->moves[g->map->e[i]->curr_move];
+		}
+		if (c == 'R')
+			g->map->e[i]->x++;
+		if (c == 'D')
+			g->map->e[i]->y++;
+		if (c == 'L')
+			g->map->e[i]->x--;
+		if (c == 'U')
+			g->map->e[i]->y--;
+		g->map->e[i]->curr_move++;
+		if (is_player_replacing(g, 0))
+			g->map->e[i]->player_rep = 1;
+	}
+	generate_enemies(g);
 }

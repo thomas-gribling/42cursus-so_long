@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus.c                                            :+:      :+:    :+:   */
+/*   bonus_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:46:18 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/10 10:58:31 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:04:28 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	display_count(t_game *g)
 	moves = ft_itoa(g->moves);
 	while (++i < (int)ft_strlen(moves))
 	{
-		t = g->textures[TEX_ZERO + (moves[i] - 48)];
+		t = g->tex[TEX_ZERO + (moves[i] - 48)];
 		mlx_put_image_to_window(g->mlx, g->win, t.ptr, x, y);
 		x += 34;
 	}

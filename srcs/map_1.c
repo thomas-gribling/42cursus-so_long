@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:07:22 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 09:51:58 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:01:07 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ void	place_tile(t_game *game, char c, int x, int y)
 	y *= TILE_SIZE;
 	if (c == '0' || c == 'C' || c == 'P')
 	{
-		t = game->textures[0];
+		t = game->tex[0];
 		mlx_put_image_to_window(game->mlx, game->win, t.ptr, x, y);
 	}
 	if (c == '1')
-		t = game->textures[get_wall_tex(game, x, y)];
+		t = game->tex[get_wall_tex(game, x, y)];
 	else if (c == 'C')
 	{
 		tex = rand() % (TEX_COLLECT_5 - TEX_COLLECT_0 + 1) + TEX_COLLECT_0;
-		t = game->textures[tex];
+		t = game->tex[tex];
 	}
 	else if (c == 'E')
-		t = game->textures[TEX_EXIT];
+		t = game->tex[TEX_EXIT];
 	else
 		return ;
 	mlx_put_image_to_window(game->mlx, game->win, t.ptr, x, y);

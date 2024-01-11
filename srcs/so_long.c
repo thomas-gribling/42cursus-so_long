@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 09:42:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/10 10:21:05 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:01:07 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	close_game(t_game *game)
 	if (BONUS_MODE)
 		limit += BONUS_TEX_AMT;
 	while (++i < limit)
-		mlx_destroy_image(game->mlx, game->textures[i].ptr);
-	free(game->textures);
+		mlx_destroy_image(game->mlx, game->tex[i].ptr);
+	free(game->tex);
 	mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 		mlx_destroy_display(game->mlx);

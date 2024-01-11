@@ -16,7 +16,8 @@ MLXFLAGS = -lX11 -lXext
 FILES = main.c so_long.c player.c assets.c \
 		map_1.c map_2.c map_3.c utils_1.c utils_2.c \
 		gnl/gnl.c gnl/gnl_utils.c \
-		bonus/bonus.c bonus/enemies_bonus.c bonus/utils_bonus.c bonus/ft_split.c
+		bonus/enemies_bonus.c bonus/utils_bonus.c bonus/ft_split.c \
+		bonus/bonus_1.c bonus/bonus_2.c
 
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 

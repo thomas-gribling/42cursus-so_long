@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/10 10:59:49 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:07:22 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define TEX_EXIT 9
 # define TEX_PLAYER 10
 
-# define BONUS_TEX_AMT 11
+# define BONUS_TEX_AMT 17
 # define TEX_ZERO 11
 # define TEX_ONE 12
 # define TEX_TWO 13
@@ -52,6 +52,12 @@
 # define TEX_EIGHT 19
 # define TEX_NINE 20
 # define TEX_ENEMY_0 21
+# define TEX_TILE_LOSE 22
+# define TEX_TILE_WIN 23
+# define TEX_LOSE_SMALL 24
+# define TEX_WIN_SMALL 25
+# define TEX_LOSE_MEDIUM 26
+# define TEX_WIN_MEDIUM 27
 
 # ifndef BONUS_MODE
 #  define BONUS_MODE 0
@@ -62,8 +68,10 @@ typedef struct s_enemy
 	int			id;
 	int			x;
 	int			y;
-	int			curr_move;
 	char		*moves;
+	int			curr_move;
+	int			player_rep;
+	int			ini[2];
 }				t_enemy;
 
 typedef struct s_map
@@ -91,7 +99,8 @@ typedef struct s_game
 	int			items;
 	int			moves;
 	t_map		*map;
-	t_sprite	*textures;
+	t_sprite	*tex;
+	int			is_on_alt;
 }				t_game;
 
 int		close_game(t_game *game);
@@ -122,7 +131,13 @@ void	init_bonus(t_game *g);
 void	display_count(t_game *g);
 t_enemy	**get_enemies(char *map);
 void	generate_enemies(t_game *g);
+void	move_enemies(t_game *g);
+void	update_enemies(t_game *g, int part, int *ini_p);
 void	free_enemies(t_enemy **enemies);
+
+int		is_player_replacing(t_game *g, int tester);
+int		should_player_die(t_game *g, int *ini_p);
+void	init_screen(t_game *g, int win);
 
 char	*ft_itoa(int n);
 int		ft_atoi(const char *nptr);
