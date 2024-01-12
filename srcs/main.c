@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:19:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 11:03:27 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/12 09:41:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,29 @@ static void	arguments_errors(int ac)
 		ft_puterror("Too much parameters\n");
 }
 
+static void	init_map_vals(t_game *g, char *path)
+{
+	g->map = malloc(sizeof(t_map));
+	g->map->debug_count = 0;
+	g->map->path = ft_strdup(path);
+	g->map->e = NULL;
+	g->is_on_alt = 0;
+}
+
+static int	check_map_file(t_game *g)
+{
+	int	tmp;
+	
+	if (!check_map_format(g->map->path))
+		return (free_m(g->map, 0), ft_puterror("Expecting a \".ber\"\n"), 1);
+	tmp = load_map(g, g->map->path);
+	if (tmp == -1)
+		return (free_m(g->map, 0), ft_puterror("Error\n"), 1);
+	if (!tmp)
+		return (free_m(g->map, 1), ft_puterror("Error\n"), 1);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_game		g;
@@ -36,14 +59,9 @@ int	main(int ac, char **av)
 	arguments_errors(ac);
 	if (ac != 2)
 		return (ft_puterror("Expecting: ./so_long <map>\n"), 1);
-	g.map = malloc(sizeof(t_map));
-	g.map->debug_count = 0;
-	g.map->path = ft_strdup(av[1]);
-	g.is_on_alt = 0;
-	if (!check_map_format(av[1]))
-		return (free_m(g.map, 0), ft_puterror("Expecting a \".ber\"\n"), 1);
-	if (!load_map(&g, av[1]))
-		return (free_m(g.map, 1), ft_puterror("Error\n"), 1);
+	init_map_vals(&g, av[1]);
+	if (check_map_file(&g))
+		return (1);
 	g.mlx = mlx_init();
 	g.win = mlx_new_window(g.mlx, g.map->width, g.map->height, GAME_TITLE);
 	load_assets(&g);

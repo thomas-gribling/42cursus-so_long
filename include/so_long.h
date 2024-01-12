@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 19:09:12 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/12 09:28:53 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,42 +40,43 @@
 # define TEX_EXIT 9
 # define TEX_PLAYER 10
 
-# define BONUS_TEX_AMT 35
+# define BONUS_TEX_AMT 36
 # define TEX_PLAYER_L 11
 # define TEX_PLAYER_U 12
 # define TEX_PLAYER_R 13
-# define TEX_ZERO 14
-# define TEX_ONE 15
-# define TEX_TWO 16
-# define TEX_THREE 17
-# define TEX_FOUR 18
-# define TEX_FIVE 19
-# define TEX_SIX 20
-# define TEX_SEVEN 21
-# define TEX_EIGHT 22
-# define TEX_NINE 23
-# define TEX_ENEMY_0_D 24
-# define TEX_ENEMY_0_L 25
-# define TEX_ENEMY_0_R 26
-# define TEX_ENEMY_0_U 27
-# define TEX_ENEMY_1_D 28
-# define TEX_ENEMY_1_L 29
-# define TEX_ENEMY_1_R 30
-# define TEX_ENEMY_1_U 31
-# define TEX_ENEMY_2_D 32
-# define TEX_ENEMY_2_L 33
-# define TEX_ENEMY_2_R 34
-# define TEX_ENEMY_2_U 35
-# define TEX_ENEMY_3_D 36
-# define TEX_ENEMY_3_L 37
-# define TEX_ENEMY_3_R 38
-# define TEX_ENEMY_3_U 39
-# define TEX_TILE_LOSE 40
-# define TEX_TILE_WIN 41
-# define TEX_LOSE_SMALL 42
-# define TEX_WIN_SMALL 43
-# define TEX_LOSE_MEDIUM 44
-# define TEX_WIN_MEDIUM 45
+# define TEX_EXIT_OPEN 14
+# define TEX_ZERO 15
+# define TEX_ONE 16
+# define TEX_TWO 17
+# define TEX_THREE 18
+# define TEX_FOUR 19
+# define TEX_FIVE 20
+# define TEX_SIX 21
+# define TEX_SEVEN 22
+# define TEX_EIGHT 23
+# define TEX_NINE 24
+# define TEX_ENEMY_0_D 25
+# define TEX_ENEMY_0_L 26
+# define TEX_ENEMY_0_R 27
+# define TEX_ENEMY_0_U 28
+# define TEX_ENEMY_1_D 29
+# define TEX_ENEMY_1_L 30
+# define TEX_ENEMY_1_R 31
+# define TEX_ENEMY_1_U 32
+# define TEX_ENEMY_2_D 33
+# define TEX_ENEMY_2_L 34
+# define TEX_ENEMY_2_R 35
+# define TEX_ENEMY_2_U 36
+# define TEX_ENEMY_3_D 37
+# define TEX_ENEMY_3_L 38
+# define TEX_ENEMY_3_R 39
+# define TEX_ENEMY_3_U 40
+# define TEX_TILE_LOSE 41
+# define TEX_TILE_WIN 42
+# define TEX_LOSE_SMALL 43
+# define TEX_WIN_SMALL 44
+# define TEX_LOSE_MEDIUM 45
+# define TEX_WIN_MEDIUM 46
 
 # ifndef BONUS_MODE
 #  define BONUS_MODE 0
@@ -119,6 +120,7 @@ typedef struct s_game
 	t_map		*map;
 	t_sprite	*tex;
 	int			is_on_alt;
+	int			e_pos[2];
 }				t_game;
 
 int		close_game(t_game *game);
@@ -147,14 +149,15 @@ void	ft_puterror(char *str);
 // BONUS
 void	init_bonus(t_game *g);
 void	display_count(t_game *g);
+void	change_exit(t_game *g);
 t_enemy	**get_enemies(char *map);
 void	generate_enemies(t_game *g);
 void	move_enemies(t_game *g);
-void	update_enemies(t_game *g, int part, int *ini_p);
+void	update_enemies(t_game *g, int *ini, int *new);
 void	free_enemies(t_enemy **enemies);
 
 int		is_player_replacing(t_game *g, int tester);
-int		should_player_die(t_game *g, int *ini_p);
+int		should_player_die(t_game *g, int *ini_p, int *new_p);
 void	init_screen(t_game *g, int win);
 
 char	*ft_itoa(int n);

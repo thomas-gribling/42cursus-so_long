@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:09:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 19:33:44 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/12 08:51:48 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	load_assets_bonus(t_game *g)
 	g->tex[TEX_PLAYER_L] = load_sprite(g, "assets/player_l.xpm");
 	g->tex[TEX_PLAYER_R] = load_sprite(g, "assets/player_r.xpm");
 	g->tex[TEX_PLAYER_U] = load_sprite(g, "assets/player_u.xpm");
+	g->tex[TEX_EXIT_OPEN] = load_sprite(g, "assets/exit_open.xpm");
 	g->tex[TEX_ZERO] = load_sprite(g, "assets/digits/0.xpm");
 	g->tex[TEX_ONE] = load_sprite(g, "assets/digits/1.xpm");
 	g->tex[TEX_TWO] = load_sprite(g, "assets/digits/2.xpm");
@@ -106,7 +107,7 @@ int	load_assets(t_game *g)
 	g->tex[TEX_COLLECT_3] = load_sprite(g, "assets/collectible_3.xpm");
 	g->tex[TEX_COLLECT_4] = load_sprite(g, "assets/collectible_4.xpm");
 	g->tex[TEX_COLLECT_5] = load_sprite(g, "assets/collectible_5.xpm");
-	g->tex[TEX_EXIT] = load_sprite(g, "assets/exit.xpm");
+	g->tex[TEX_EXIT] = load_sprite(g, "assets/exit_closed.xpm");
 	g->tex[TEX_PLAYER] = load_sprite(g, "assets/player_d.xpm");
 	if (BONUS_MODE)
 		load_assets_bonus(g);

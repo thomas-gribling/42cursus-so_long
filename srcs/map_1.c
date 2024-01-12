@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:07:22 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 11:01:07 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/12 08:48:41 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	place_tile(t_game *game, char c, int x, int y)
 
 	x *= TILE_SIZE;
 	y *= TILE_SIZE;
-	if (c == '0' || c == 'C' || c == 'P')
+	if (c == '0')
 	{
 		t = game->tex[0];
 		mlx_put_image_to_window(game->mlx, game->win, t.ptr, x, y);
@@ -62,6 +62,13 @@ void	generate_map(t_game *game)
 	{
 		x = -1;
 		while (game->map->content[y][++x])
+		{
+			if (BONUS_MODE && game->map->content[y][x] == 'E')
+			{
+				game->e_pos[0] = x * TILE_SIZE;
+				game->e_pos[1] = y * TILE_SIZE;
+			}
 			place_tile(game, game->map->content[y][x], x, y);
+		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:50:29 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/09 10:51:12 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/12 09:09:22 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	load_map(t_game *game, char *path)
 	char	**tmp;
 
 	if (!read_map(game->map, path))
-		return (0);
+		return (-1);
 	if (!check_bounds(game->map))
 		return (0);
 	get_player_coordinates(game);

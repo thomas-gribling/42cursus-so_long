@@ -6,14 +6,14 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:04:04 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 11:17:50 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/12 09:38:50 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 #include "../../mlx/mlx.h"
 
-void	update_enemies(t_game *g, int part, int *ini_p)
+void	update_enemies(t_game *g, int *ini, int *new)
 {
 	t_sprite	t;
 	int			x;
@@ -22,22 +22,18 @@ void	update_enemies(t_game *g, int part, int *ini_p)
 
 	if (!g->map->e)
 		return ;
-	if (part == 1)
+	i = -1;
+	while (g->map->e[++i])
 	{
-		i = -1;
-		while (g->map->e[++i])
-		{
-			g->map->e[i]->player_rep = 0;
-			x = g->map->e[i]->x * TILE_SIZE;
-			y = g->map->e[i]->y * TILE_SIZE;
-			t = g->tex[TEX_GROUND];
-			mlx_put_image_to_window(g->mlx, g->win, t.ptr, x, y);
-		}
-		move_enemies(g);
+		g->map->e[i]->player_rep = 0;
+		x = g->map->e[i]->x * TILE_SIZE;
+		y = g->map->e[i]->y * TILE_SIZE;
+		t = g->tex[TEX_GROUND];
+		mlx_put_image_to_window(g->mlx, g->win, t.ptr, x, y);
 	}
-	if (part == 2)
-		if (should_player_die(g, ini_p))
-			init_screen(g, 0);
+	move_enemies(g);
+	if (should_player_die(g, ini, new))
+		init_screen(g, 0);
 }
 
 int	is_player_replacing(t_game *g, int tester)
@@ -64,7 +60,7 @@ int	is_player_replacing(t_game *g, int tester)
 	return (0);
 }
 
-int	should_player_die(t_game *g, int *ini_p)
+int	should_player_die(t_game *g, int *ini_p, int *new_p)
 {
 	int	pos_p[2];
 	int	pos_e[2];
@@ -73,17 +69,17 @@ int	should_player_die(t_game *g, int *ini_p)
 
 	if (!g->map->e)
 		return (0);
-	pos_p[0] = g->p_pos[0] * TILE_SIZE;
-	pos_p[1] = g->p_pos[1] * TILE_SIZE;
+	pos_p[0] = new_p[0];
+	pos_p[1] = new_p[1];
 	i = -1;
 	while (g->map->e[++i])
 	{
-		pos_e[0] = g->map->e[i]->x * TILE_SIZE;
-		pos_e[1] = g->map->e[i]->y * TILE_SIZE;
+		pos_e[0] = g->map->e[i]->x;
+		pos_e[1] = g->map->e[i]->y;
 		if (pos_p[0] == pos_e[0] && pos_p[1] == pos_e[1])
 			return (1);
-		ini_e[0] = g->map->e[i]->ini[0] * TILE_SIZE;
-		ini_e[1] = g->map->e[i]->ini[1] * TILE_SIZE;
+		ini_e[0] = g->map->e[i]->ini[0];
+		ini_e[1] = g->map->e[i]->ini[1];
 		if (pos_p[0] == ini_e[0] && pos_p[1] == ini_e[1])
 			if (pos_e[0] == ini_p[0] && pos_e[1] == ini_p[1])
 				return (1);
