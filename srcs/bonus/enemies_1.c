@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemies_bonus.c                                    :+:      :+:    :+:   */
+/*   enemies_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:16:24 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/11 19:20:36 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:13:18 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,36 +122,4 @@ void	generate_enemies(t_game *g)
 		if (g->map->content[y / TILE_SIZE][x / TILE_SIZE] == '0')
 			mlx_put_image_to_window(g->mlx, g->win, t.ptr, x, y);
 	}
-}
-
-// prevent moving if wall/exit/collect
-void	move_enemies(t_game *g)
-{
-	int			i;
-	char		c;
-
-	i = -1;
-	while (g->map->e[++i])
-	{
-		g->map->e[i]->ini[0] = g->map->e[i]->x;
-		g->map->e[i]->ini[1] = g->map->e[i]->y;
-		c = g->map->e[i]->moves[g->map->e[i]->curr_move];
-		if (c == '\n' || !c)
-		{
-			g->map->e[i]->curr_move = 0;
-			c = g->map->e[i]->moves[g->map->e[i]->curr_move];
-		}
-		if (c == 'R')
-			g->map->e[i]->x++;
-		if (c == 'D')
-			g->map->e[i]->y++;
-		if (c == 'L')
-			g->map->e[i]->x--;
-		if (c == 'U')
-			g->map->e[i]->y--;
-		g->map->e[i]->curr_move++;
-		if (is_player_replacing(g, 0))
-			g->map->e[i]->player_rep = 1;
-	}
-	generate_enemies(g);
 }

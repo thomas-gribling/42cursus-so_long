@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:19:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/12 09:41:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/12 14:57:43 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	init_map_vals(t_game *g, char *path)
 static int	check_map_file(t_game *g)
 {
 	int	tmp;
-	
+
 	if (!check_map_format(g->map->path))
 		return (free_m(g->map, 0), ft_puterror("Expecting a \".ber\"\n"), 1);
 	tmp = load_map(g, g->map->path);

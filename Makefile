@@ -13,11 +13,11 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -lm
 MLXFLAGS = -lX11 -lXext
 
-FILES = main.c so_long.c player.c assets.c \
+FILES = main.c so_long.c player_1.c player_2.c assets.c \
 		map_1.c map_2.c map_3.c utils_1.c utils_2.c \
 		gnl/gnl.c gnl/gnl_utils.c \
-		bonus/enemies_bonus.c bonus/utils_bonus.c bonus/ft_split.c \
-		bonus/bonus_1.c bonus/bonus_2.c
+		bonus/enemies_1.c bonus/enemies_2.c bonus/ft_split.c \
+		bonus/utils_bonus.c bonus/bonus_1.c bonus/bonus_2.c
 
 OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 
