@@ -6,21 +6,33 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:13:20 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/12 15:13:58 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/12 15:27:23 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
+static int	check_valid(t_game *g, int i, int x_c, int y_c)
+{
+	int	x;
+	int	y;
+
+	x = g->map->e[i]->x + x_c;
+	y = g->map->e[i]->y + y_c;
+	if (g->map->content[y][x] == '0')
+		return (1);
+	return (0);
+}
+
 static void	increment_pos(t_game *g, int i, char c)
 {
-	if (c == 'R')
+	if (c == 'R' && check_valid(g, i, 1, 0))
 		g->map->e[i]->x++;
-	if (c == 'D')
+	if (c == 'D' && check_valid(g, i, 0, 1))
 		g->map->e[i]->y++;
-	if (c == 'L')
+	if (c == 'L' && check_valid(g, i, -1, 0))
 		g->map->e[i]->x--;
-	if (c == 'U')
+	if (c == 'U' && check_valid(g, i, 0, -1))
 		g->map->e[i]->y--;
 }
 
