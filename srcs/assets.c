@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:09:56 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/12 08:51:48 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:35:32 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	load_assets_bonus(t_game *g)
 	g->tex[TEX_PLAYER_L] = load_sprite(g, "assets/player_l.xpm");
 	g->tex[TEX_PLAYER_R] = load_sprite(g, "assets/player_r.xpm");
 	g->tex[TEX_PLAYER_U] = load_sprite(g, "assets/player_u.xpm");
-	g->tex[TEX_EXIT_OPEN] = load_sprite(g, "assets/exit_open.xpm");
+	g->tex[TEX_EXIT_CLOSED] = load_sprite(g, "assets/exit_open.xpm");
 	g->tex[TEX_ZERO] = load_sprite(g, "assets/digits/0.xpm");
 	g->tex[TEX_ONE] = load_sprite(g, "assets/digits/1.xpm");
 	g->tex[TEX_TWO] = load_sprite(g, "assets/digits/2.xpm");

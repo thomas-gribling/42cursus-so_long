@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:46:18 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/12 14:58:18 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:33:55 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ void	change_exit(t_game *g)
 
 	if (g->items)
 		return ;
-	t = g->tex[TEX_EXIT_OPEN];
+	t = g->tex[TEX_EXIT_CLOSED];
 	mlx_put_image_to_window(g->mlx, g->win, t.ptr, g->e_pos[0], g->e_pos[1]);
 }

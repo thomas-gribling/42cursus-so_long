@@ -29,12 +29,12 @@ BONUS_MODE = 0
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Creating object$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@ -D BONUS_MODE=$(BONUS_MODE)
 
-all: $(NAME)
+all: mlx $(NAME)
 
 mlx:
 	@make -sC $(MLX_PATH)
 
-$(NAME): mlx $(OBJECTS)
+$(NAME): $(OBJECTS)
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Compiling $@$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -I$(MLX_PATH) -I$(INCLUDE)
 	@echo "$(BOLD_GREEN)Done!$(RESET)"
@@ -53,4 +53,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re mlx
+.PHONY: mlx

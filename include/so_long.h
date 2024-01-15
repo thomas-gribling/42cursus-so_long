@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/12 09:28:53 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:32:59 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define TEX_PLAYER_L 11
 # define TEX_PLAYER_U 12
 # define TEX_PLAYER_R 13
-# define TEX_EXIT_OPEN 14
+# define TEX_EXIT_CLOSED 14
 # define TEX_ZERO 15
 # define TEX_ONE 16
 # define TEX_TWO 17
