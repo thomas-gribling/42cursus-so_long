@@ -1,6 +1,8 @@
 NAME = so_long
 
 BOLD_GREEN		= \033[32;01m
+BOLD_CYAN		= \033[36;01m
+GREEN			= \033[0;32m
 YELLOW			= \033[0;33m
 RESET			= \033[0m
 
@@ -24,16 +26,16 @@ OBJECTS = $(addprefix $(SRCS), $(FILES:.c=.o))
 BONUS_MODE = 0
 
 %.o: %.c
-	@echo "$(YELLOW)Creating $@$(RESET)"
+	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Creating object$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@ -D BONUS_MODE=$(BONUS_MODE)
 
 all: $(NAME)
 
 mlx:
-	make -sC $(MLX_PATH)
-	
-$(NAME): $(OBJECTS)
-	@echo "$(YELLOW)Compiling $@$(RESET)"
+	@make -sC $(MLX_PATH)
+
+$(NAME): mlx $(OBJECTS)
+	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : $(YELLOW)Compiling $@$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJECTS) $(MLX_PATH)$(MLX_LIB) $(MLXFLAGS) -o $@ -I$(MLX_PATH) -I$(INCLUDE)
 	@echo "$(BOLD_GREEN)Done!$(RESET)"
 
@@ -41,11 +43,14 @@ bonus: BONUS_MODE = 1
 bonus: clean $(NAME)
 
 clean:
-	@echo Removing objects
+	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : Removing objects"
 	@rm -rf $(OBJECTS)
 
 fclean: clean
-	@echo Removing $(NAME)
+	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : Removing $(NAME)"
 	@rm -rf $(NAME)
+	@make clean -sC $(MLX_PATH)
 
 re: fclean all
+
+.PHONY: all clean fclean re mlx
