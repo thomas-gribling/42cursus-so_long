@@ -40,7 +40,7 @@ $(NAME): $(OBJECTS)
 	@echo "$(BOLD_GREEN)Done!$(RESET)"
 
 bonus: BONUS_MODE = 1
-bonus: clean $(NAME)
+bonus: clean mlx $(NAME)
 
 clean:
 	@echo "$(BOLD_CYAN)$(NAME) $(RESET)[$(GREEN)$@$(RESET)] : Removing objects"
