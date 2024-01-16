@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:04:04 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/12 09:38:50 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/16 09:16:36 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,5 @@ void	init_screen(t_game *g, int win)
 	p[1] = g->map->width / 2 - (228 + 532 * size_mode) / 2;
 	p[0] = g->map->height / 2 - (76 + 177 * size_mode) / 2;
 	mlx_put_image_to_window(g->mlx, g->win, t2.ptr, p[1], p[0]);
+	display_count_win(g, win, size_mode);
 }

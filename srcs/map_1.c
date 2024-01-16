@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:07:22 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/12 08:48:41 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/16 09:12:50 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	place_tile(t_game *game, char c, int x, int y)
 		t = game->tex[tex];
 	}
 	else if (c == 'E')
-		t = game->tex[TEX_EXIT];
+		t = game->tex[TEX_EXIT + (TEX_EXIT_CLOSED - TEX_EXIT) * BONUS_MODE];
 	else
 		return ;
 	mlx_put_image_to_window(game->mlx, game->win, t.ptr, x, y);

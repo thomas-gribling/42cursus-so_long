@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:46:18 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/15 14:33:55 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/16 09:30:33 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,29 @@ void	change_exit(t_game *g)
 
 	if (g->items)
 		return ;
-	t = g->tex[TEX_EXIT_CLOSED];
+	t = g->tex[TEX_EXIT];
 	mlx_put_image_to_window(g->mlx, g->win, t.ptr, g->e_pos[0], g->e_pos[1]);
+}
+
+void	display_count_win(t_game *g, int win, int size_mode)
+{
+	int			x;
+	int			y;
+	int			i;
+	char		*moves;
+	t_sprite	t;
+
+	if (!win)
+		return ;
+	moves = ft_itoa(g->moves);
+	x = g->map->width / 2 - (34 * ft_strlen(moves)) / 2;
+	y = g->map->height / 2 - 60 / 2 + (70 + 70 * size_mode);
+	i = -1;
+	while (++i < (int)ft_strlen(moves))
+	{
+		t = g->tex[TEX_ZERO + (moves[i] - 48)];
+		mlx_put_image_to_window(g->mlx, g->win, t.ptr, x, y);
+		x += 34;
+	}
+	free(moves);
 }

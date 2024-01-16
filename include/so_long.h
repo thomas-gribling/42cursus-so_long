@@ -6,7 +6,7 @@
 /*   By: tgriblin <tgriblin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 11:10:09 by tgriblin          #+#    #+#             */
-/*   Updated: 2024/01/15 14:32:59 by tgriblin         ###   ########.fr       */
+/*   Updated: 2024/01/16 09:16:42 by tgriblin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void	free_enemies(t_enemy **enemies);
 int		is_player_replacing(t_game *g, int tester);
 int		should_player_die(t_game *g, int *ini_p, int *new_p);
 void	init_screen(t_game *g, int win);
+void	display_count_win(t_game *g, int win, int size_mode);
 
 char	*ft_itoa(int n);
 int		ft_atoi(const char *nptr);
